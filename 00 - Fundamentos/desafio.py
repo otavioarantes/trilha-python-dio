@@ -10,7 +10,8 @@ menu = """
 saldo = 0
 limite = 500
 extrato = ""
-numero_saques = 0
+# Exibir número de saques restantes após o saque bem-sucedido
+numero_saques = 1
 LIMITE_SAQUES = 3
 
 while True:
@@ -45,10 +46,17 @@ while True:
         elif excedeu_saques:
             print("Operação falhou! Número máximo de saques excedido.")
 
+        # Alteração: Mostrar ao usuário quantos saques ainda podem ser feitos no dia.
+        # Motivo: Ajuda o usuário a planejar suas transações, fornecendo o número de saques restantes.
+        elif opcao == "s":
+            print(f"Você ainda pode realizar {LIMITE_SAQUES - numero_saques} saques hoje.")
+
+
         elif valor > 0:
             saldo -= valor
             extrato += f"Saque: R$ {valor:.2f}\n"
             numero_saques += 1
+            # Exibir número de saques restantes após o saque bem-sucedido
 
         else:
             print("Operação falhou! O valor informado é inválido.")
